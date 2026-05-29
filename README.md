@@ -6,18 +6,18 @@ Sistema completo de rastreamento de pedidos desenvolvido com **.NET 10**, **Rabb
 
 ## 🚀 Início Rápido (Como rodar)
 
-# Clone o repositório
+**Clone o repositório**
 
 ```powershell
 git clone https://github.com/wendryandrade/order-tracking/
 ```
 
-# Entre na pasta do projeto
+**Entre na pasta do projeto**
 ```powershell
 cd OrderTracking
 ```
 
-# Rode o comando docker
+**Rode o comando docker**
 ```powershell
 docker-compose up -d --build
 ```
