@@ -1,14 +1,23 @@
-# 📦 Order Tracking System
+# 📦 Order Tracking
 
 Sistema completo de rastreamento de pedidos desenvolvido com **.NET 10**, **RabbitMQ**, **SQL Server**, **React + Vite** e **Clean Architecture**, utilizando mensageria para processamento assíncrono.
 
-![CI/CD Pipeline](https://github.com/wendryandrade/order-tracking/actions/workflows/ci-cd.yml/badge.svg)
-![CI - Build & Test](https://github.com/wendryandrade/order-tracking/actions/workflows/ci.yml/badge.svg)
-
 ---
 
-## 🚀 Início Rápido (Um Comando)
+## 🚀 Início Rápido (Como rodar)
 
+# Clone o repositório
+
+```powershell
+git clone https://github.com/wendryandrade/order-tracking/
+```
+
+# Entre na pasta do projeto
+```powershell
+cd OrderTracking
+```
+
+# Rode o comando docker
 ```powershell
 docker-compose up -d --build
 ```
@@ -23,8 +32,6 @@ docker-compose up -d --build
 docker-compose down
 ```
 
-📖 **Guia completo:** [COMO-RODAR.md](COMO-RODAR.md)
-
 ---
 
 ## 📖 Sobre o Projeto
@@ -37,7 +44,6 @@ Sistema **full-stack** que demonstra boas práticas de desenvolvimento:
 - ✅ **Worker Service** (BackgroundService) processando fila
 - ✅ **Persistência** com Entity Framework Core e SQL Server
 - ✅ **Clean Architecture** (Domain, Application, Infrastructure, API, Worker)
-- ✅ **Logging estruturado** com Serilog
 - ✅ **Testes unitários** com xUnit, Moq e FluentAssertions
 
 ### **Frontend (React + Vite)**
@@ -48,10 +54,6 @@ Sistema **full-stack** que demonstra boas práticas de desenvolvimento:
 
 ### **DevOps**
 - ✅ **Docker** e **Docker Compose** para todos os serviços
-- ✅ **CI/CD** com GitHub Actions (build, test, push)
-- ✅ **Multi-stage builds** otimizados
-- ✅ **Automated testing** em Pull Requests
-- ✅ **Docker Hub** auto-publish em push para main
 
 ---
 
@@ -123,7 +125,6 @@ Sistema **full-stack** que demonstra boas práticas de desenvolvimento:
 |------------|-----|
 | Docker | Containerização |
 | Docker Compose | Orquestração |
-| GitHub Actions | CI/CD |
 
 ---
 
@@ -142,12 +143,7 @@ OrderTracking/
 ├── tests/
 │   └── OrderTracking.Tests/            # Testes unitários
 │
-├── .github/workflows/                  # CI/CD
-│   ├── ci.yml                          # Build & Test
-│   └── ci-cd.yml                       # Build & Push Docker
-│
 ├── docker-compose.yml                  # Todos os serviços
-├── COMO-RODAR.md                       # Guia rápido
 └── README.md                           # Este arquivo
 ```
 
@@ -155,7 +151,6 @@ OrderTracking/
 - ✅ Clean Architecture
 - ✅ SOLID
 - ✅ Domain-Driven Design
-- ✅ Dependency Inversion
 
 ---
 
@@ -163,24 +158,6 @@ OrderTracking/
 
 ### **POST /api/orders**
 Cria um novo pedido.
-
-```json
-// Request
-{
-  "customerName": "João Silva",
-  "amount": 150.50
-}
-
-// Response (200)
-{
-  "id": "guid",
-  "customerName": "João Silva",
-  "amount": 150.50,
-  "orderDate": "2024-05-27T14:30:00Z",
-  "status": 0,  // 0=Pending, 1=Processed
-  "createdAt": "2024-05-27T14:30:00Z"
-}
-```
 
 ### **GET /api/orders**
 Lista todos os pedidos.
@@ -204,11 +181,6 @@ dotnet test
 - ✅ Application: `OrderServiceTests` (CRUD, publicação)
 - ✅ Total: 6 testes passando
 
-**Frameworks:**
-- xUnit (test runner)
-- Moq (mocking)
-- FluentAssertions (assertions)
-
 ---
 
 ## 🐳 Docker
@@ -220,187 +192,8 @@ dotnet test
 - `worker` - BackgroundService consumidor
 - `web` - Frontend React
 
-### **Comandos úteis:**
-```powershell
-# Build e start
-docker-compose up -d --build
-
-# Logs
-docker-compose logs -f
-docker-compose logs -f api
-docker-compose logs -f worker
-
-# Parar
-docker-compose down
-
-# Limpar tudo
-docker-compose down -v
-docker system prune -a
-```
-
----
-
-## 🔄 CI/CD
-
-O projeto possui **3 workflows automatizados**:
-
-### **1. CI - Build & Test** (`ci.yml`)
-**Trigger:** Pull Requests
-
-**Executa:**
-- ✅ Análise de código (.NET format)
-- ✅ Build backend + frontend
-- ✅ Testes unitários com cobertura
-- ✅ Validação de Dockerfiles
-- ✅ Comentário automático com cobertura no PR
-
-### **2. CI/CD Pipeline** (`ci-cd.yml`)
-**Trigger:** Push para `main`
-
-**Executa:**
-- ✅ Build & Test completo
-- ✅ Build de imagens Docker multi-arch (amd64 + arm64)
-- ✅ Push automático para Docker Hub
-- ✅ Tags: `latest`, `main-sha`, versão semver
-
-### **3. Deploy** (`deploy.yml`)
-**Trigger:** Manual (workflow_dispatch)
-
-**Permite:**
-- 🎯 Deploy controlado para production/staging
-- 🏷️ Escolha de versão específica
-- 📋 Summary completo do deploy
-
----
-
-### **⚡ Setup Rápido (5 minutos)**
-
-**1. Criar conta no Docker Hub**
-- Acesse: https://hub.docker.com
-- Crie conta grátis
-
-**2. Criar Access Token**
-- Docker Hub → Settings → Security → New Access Token
-- Permissions: Read, Write, Delete
-
-**3. Configurar Secrets no GitHub**
-```
-Settings → Secrets and variables → Actions → New secret:
-
-DOCKER_USERNAME = seu_username_dockerhub
-DOCKER_PASSWORD = dckr_pat_abc123... (o token)
-```
-
-**4. Push para main**
-```bash
-git push origin main
-```
-
-**5. Verificar**
-- GitHub → Actions (veja o workflow rodando)
-- Docker Hub (imagens publicadas)
-
----
-
-### **📦 Usando as Imagens Publicadas**
-
-```bash
-# Pull das imagens
-docker pull seu_username/ordertracking-api:latest
-docker pull seu_username/ordertracking-worker:latest
-docker pull seu_username/ordertracking-web:latest
-
-# Ou usar docker-compose.prod.yml
-export DOCKER_USERNAME=seu_username
-docker-compose -f docker-compose.prod.yml pull
-docker-compose -f docker-compose.prod.yml up -d
-```
-
----
-
-### **📖 Guias Detalhados**
-
-- ⚡ **Quick Start**: [QUICK-START-CI-CD.md](QUICK-START-CI-CD.md) - Setup em 5 min
-- 📚 **Guia Completo**: [GITHUB-ACTIONS-GUIDE.md](GITHUB-ACTIONS-GUIDE.md) - Tudo sobre CI/CD
-- 🐳 **Docker**: [DOCKER-GUIDE.md](DOCKER-GUIDE.md) - Guia Docker completo
-
----
-
-## 📚 Documentação Adicional
-
-- ⚡ [QUICK-START-CI-CD.md](QUICK-START-CI-CD.md) - Setup CI/CD em 5 minutos
-- 📚 [GITHUB-ACTIONS-GUIDE.md](GITHUB-ACTIONS-GUIDE.md) - Guia completo de CI/CD
-- 🚀 [COMO-RODAR.md](COMO-RODAR.md) - Guia rápido de execução
-- 🐳 [DOCKER-GUIDE.md](DOCKER-GUIDE.md) - Guia completo Docker
-- 🏗️ [REFATORACAO-CONSUMER-WORKER.md](REFATORACAO-CONSUMER-WORKER.md) - Decisões arquiteturais
-
----
-
-## 🐛 Troubleshooting
-
-### **Docker não inicia:**
-```powershell
-# Verificar se Docker está rodando
-docker info
-
-# Limpar containers antigos
-docker-compose down -v
-docker system prune -a
-```
-
-### **Porta já em uso:**
-Edite `docker-compose.yml` e troque as portas:
-```yaml
-ports:
-  - "5001:8080"  # API na porta 5001
-  - "3001:80"    # Frontend na porta 3001
-```
-
-### **Banco vazio:**
-Aguarde 30-60 segundos após `docker-compose up`.
-O Entity Framework cria o banco automaticamente.
-
-### **RabbitMQ não conecta:**
-```powershell
-# Verificar logs
-docker-compose logs rabbitmq
-
-# Restart RabbitMQ
-docker-compose restart rabbitmq
-```
-
----
-
-## 📄 Licença
-
-Este projeto foi desenvolvido para fins educacionais e de demonstração.
-
 ---
 
 ## 👤 Autor
 
-**Wendry Andrade**
-- GitHub: [@wendryandrade](https://github.com/wendryandrade)
-- Repositório: [order-tracking](https://github.com/wendryandrade/order-tracking)
-
----
-
-## 🎯 Features Implementadas
-
-- [x] API REST com Swagger
-- [x] Mensageria RabbitMQ
-- [x] Worker Service processador
-- [x] Persistência SQL Server + EF Core
-- [x] Frontend React + Vite
-- [x] Testes unitários
-- [x] Docker Compose
-- [x] CI/CD GitHub Actions
-- [x] Clean Architecture
-- [x] Logging com Serilog
-- [x] Validações de entrada
-- [x] Health checks
-- [x] Multi-stage Docker builds
-
----
-
-🎉 **Projeto pronto para produção!**
+**Wendrya Andrade**
