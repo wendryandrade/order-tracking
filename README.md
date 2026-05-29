@@ -9,7 +9,7 @@ Sistema completo de rastreamento de pedidos desenvolvido com **.NET 10**, **Rabb
 **Clone o repositório**
 
 ```powershell
-git clone https://github.com/wendryandrade/order-tracking/
+git clone https://github.com/wendryandrade/order-tracking.git
 ```
 
 **Entre na pasta do projeto**
