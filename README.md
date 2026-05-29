@@ -14,7 +14,7 @@ git clone https://github.com/wendryandrade/order-tracking.git
 
 **Entre na pasta do projeto**
 ```powershell
-cd OrderTracking
+cd order-tracking
 ```
 
 **Rode o comando docker**
