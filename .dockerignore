@@ -1,0 +1,63 @@
+# .NET artifacts
+**/bin/
+**/obj/
+**/out/
+**/.vs/
+**/.vscode/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Node modules
+**/node_modules/
+**/npm-debug.log
+**/yarn-error.log
+**/yarn-debug.log
+**/.pnp/
+**/.pnp.js
+
+# Testing
+**/coverage/
+**/.nyc_output/
+
+# IDE
+**/.idea/
+**/.vs/
+**/.vscode/
+**/*.swp
+**/*.swo
+**/*~
+
+# OS
+**/.DS_Store
+**/Thumbs.db
+
+# Git
+**/.git/
+**/.gitignore
+**/.gitattributes
+
+# Docker
+**/Dockerfile
+**/docker-compose*.yml
+**/.dockerignore
+
+# Misc
+**/README.md
+**/*.md
+**/.env
+**/.env.local
+**/.env.*.local
