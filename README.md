@@ -57,36 +57,6 @@ Sistema **full-stack** que demonstra boas práticas de desenvolvimento:
 
 ---
 
-## 🏗️ Arquitetura
-
-```
-┌──────────────────┐
-│    Frontend      │
-│  (React + Vite)  │ :3000
-└────────┬─────────┘
-		 │ HTTP
-		 ↓
-┌────────────────────────────────────────┐
-│              API                       │
-│         (ASP.NET Core 10)              │ :5000
-│  ┌──────────────┐   ┌──────────────┐  │
-│  │ Controllers  │───│  Services    │  │
-│  └──────────────┘   └──────┬───────┘  │
-└─────────────────────────────┼──────────┘
-		 │                    │
-		 ↓                    ↓
-┌─────────────────┐   ┌──────────────┐
-│   SQL Server    │   │   RabbitMQ   │
-│   (Database)    │   │    (Queue)   │
-└─────────────────┘   └──────┬───────┘
-		 ↑                    │
-		 │                    ↓
-		 │            ┌───────────────────┐
-		 └────────────│      Worker       │
-					  │ (BackgroundService)│
-					  └───────────────────┘
-```
-
 ### **Fluxo de Processamento**
 
 1. **Frontend** envia pedido → **API**
@@ -108,7 +78,6 @@ Sistema **full-stack** que demonstra boas práticas de desenvolvimento:
 | Entity Framework Core | 10.0 | ORM |
 | SQL Server | 2022 | Database |
 | RabbitMQ | 3-management | Message broker |
-| Serilog | Latest | Logging |
 | xUnit + Moq | Latest | Testes |
 
 ### Frontend
